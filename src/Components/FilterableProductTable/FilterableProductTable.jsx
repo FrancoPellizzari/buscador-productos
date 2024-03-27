@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "../SearcBar/SearchBar";
 import ProductTable from "../ProductTable/ProductTable";
-import data from '../../data/data.json' 
+ 
 
 export default function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');

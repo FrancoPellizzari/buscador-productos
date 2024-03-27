@@ -9,20 +9,31 @@ export default function ProductTable({filterText, inStock}) {
     const rows = [];
     let lastCategory = null;
   
-    products.forEach((sorongo) => {
-      if (sorongo.category !== lastCategory) {
+    products.forEach((product) => {
+      
+        if (
+          product.name.toLowerCase().indexOf(
+            filterText.toLowerCase()
+          ) === -1
+        ) {
+          return;
+        }
+        if (inStock && !product.stocked) {
+          return;
+        }
+      if (product.category !== lastCategory) {
         rows.push(
           <ProductCategoryRow
-            category={sorongo.category}
-            key={sorongo.category} />
+            category={product.category}
+            key={product.category} />
         );
       }
       rows.push(
         <ProductRow
-          product={sorongo}
-          key={sorongo.name} />
+          product={product}
+          key={product.name} />
       );
-      lastCategory = sorongo.category;
+      lastCategory = product.category;
     });
   
     return (
